@@ -1,9 +1,10 @@
-import { Analytics } from '@vercel/analytics/next'
+﻿import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { AppProvider } from '@/components/AppContext'
 
 export const metadata: Metadata = {
-  title: 'CryptoLens · Post-Quantum Readiness',
+  title: 'CryptoLens Â· Post-Quantum Readiness',
   description: 'Enterprise cryptographic discovery, analysis, and post-quantum migration command center.',
   generator: 'v0.app',
   icons: {
@@ -40,10 +41,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className="antialiased bg-[#FDFBF7] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-[#FDFBF7] to-purple-50/50 text-slate-900 min-h-screen">
+        <AppProvider>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        </AppProvider>
       </body>
     </html>
   )
 }
+
+
