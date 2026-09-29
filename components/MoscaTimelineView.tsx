@@ -59,9 +59,9 @@ export default function MoscaTimelineView() {
       <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-xl p-6 shadow-sm space-y-6">
         <h3 className="text-sm font-semibold text-slate-900">Adjust Parameters</h3>
         {[
-          { label: 'D â€” Security Shelf-Life', val: D, set: setD, max: 20, color: 'accent-blue-600', textColor: 'text-blue-600' },
-          { label: 'T â€” PQC Migration Time', val: T, set: setT, max: 15, color: 'accent-purple-600', textColor: 'text-purple-600' },
-          { label: 'Q â€” Q-Day Estimated Arrival', val: Q, set: setQ, max: 20, color: 'accent-slate-700', textColor: 'text-slate-700' },
+          { label: 'D &mdash; Security Shelf-Life', val: D, set: setD, max: 20, color: 'accent-blue-600', textColor: 'text-blue-600' },
+          { label: 'T &mdash; PQC Migration Time', val: T, set: setT, max: 15, color: 'accent-purple-600', textColor: 'text-purple-600' },
+          { label: 'Q &mdash; Q-Day Estimated Arrival', val: Q, set: setQ, max: 20, color: 'accent-slate-700', textColor: 'text-slate-700' },
         ].map(({ label, val, set, max, color, textColor }) => (
           <div key={label}>
             <div className="flex justify-between items-center mb-2">
@@ -106,12 +106,12 @@ export default function MoscaTimelineView() {
         <div className="relative mt-2" style={{ height: 24 }}>
           <div className="absolute flex flex-col items-center" style={{ left: `${qMark}%`, transform: 'translateX(-50%)' }}>
             <div className="w-px h-3 bg-red-500"></div>
-            <span className="text-[10px] text-red-600 font-bold whitespace-nowrap mt-0.5">â–² Q-Day ~{currentYear + Q}</span>
+            <span className="text-[10px] text-red-600 font-bold whitespace-nowrap mt-0.5">â&ndash;² Q-Day ~{currentYear + Q}</span>
           </div>
         </div>
 
         <div className="flex gap-4 mt-4 flex-wrap">
-          {[['bg-blue-500','D â€” Security Shelf-Life'],['bg-purple-500','T â€” PQC Migration Time'],['bg-slate-700','Q-Day (Crypto-Relevant QC)']].map(([c,l]) => (
+          {[['bg-blue-500','D &mdash; Security Shelf-Life'],['bg-purple-500','T &mdash; PQC Migration Time'],['bg-slate-700','Q-Day (Crypto-Relevant QC)']].map(([c,l]) => (
             <div key={l} className="flex items-center gap-2 text-xs text-slate-600">
               <div className={`w-3 h-2 rounded ${c}`}></div>{l}
             </div>
@@ -128,8 +128,8 @@ export default function MoscaTimelineView() {
           <div>
             <h3 className={`font-bold text-lg ${isVulnerable ? 'text-rose-800' : 'text-emerald-800'}`}>
               {isVulnerable
-                ? `VULNERABLE: D(${D}) + T(${T}) = ${D+T} > Q(${Q}) â€” Immediate Action Required`
-                : `PROTECTED: D(${D}) + T(${T}) = ${D+T} â‰¤ Q(${Q}) â€” Within Safe Bounds`}
+                ? `VULNERABLE: D(${D}) + T(${T}) = ${D+T} > Q(${Q}) &mdash; Immediate Action Required`
+                : `PROTECTED: D(${D}) + T(${T}) = ${D+T} â‰¤ Q(${Q}) &mdash; Within Safe Bounds`}
             </h3>
             <p className={`text-sm mt-2 leading-relaxed ${isVulnerable ? 'text-rose-700' : 'text-emerald-700'}`}>
               {isVulnerable

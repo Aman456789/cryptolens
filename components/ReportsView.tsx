@@ -118,7 +118,7 @@ and ML-DSA (FIPS 204) algorithms within 90 days.`
       {/* JSON Preview Panel */}
       <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-xl overflow-hidden shadow-sm">
         <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-slate-50">
-          <p className="text-sm font-semibold text-slate-700">JSON Preview â€” ecdat-cbom.json</p>
+          <p className="text-sm font-semibold text-slate-700">JSON Preview &mdash; ecdat-cbom.json</p>
           <span className="text-xs text-slate-400 font-mono">{projectName || 'ECDAT Audit'}</span>
         </div>
         <pre className="p-5 text-xs text-slate-600 font-mono overflow-x-auto bg-white leading-relaxed max-h-72 overflow-y-auto">

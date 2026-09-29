@@ -122,7 +122,7 @@ export default function Dashboard() {
 
         <div className="flex-1 overflow-y-auto p-8 bg-slate-50">
 
-          {/* â”€â”€ Executive Dashboard â”€â”€ */}
+          {/* â&quot;€â&quot;€ Executive Dashboard â&quot;€â&quot;€ */}
           {activeTab === 'dashboard' && (
             <div className="max-w-6xl mx-auto space-y-4">
               <div className="flex justify-between items-end pb-2">
@@ -139,9 +139,9 @@ export default function Dashboard() {
               {/* 4 Metric Cards */}
               <div className="grid grid-cols-4 gap-4">
                 {[
-                  { icon: ShieldAlert, color: 'bg-rose-50 text-rose-500', label: 'Total Vulnerabilities', val: '2,104', trend: 'â†— 12%', trendColor: 'text-rose-600' },
+                  { icon: ShieldAlert, color: 'bg-rose-50 text-rose-500', label: 'Total Vulnerabilities', val: '2,104', trend: 'â†&mdash; 12%', trendColor: 'text-rose-600' },
                   { icon: Cpu,         color: 'bg-blue-50 text-blue-600',  label: 'Critical & High',       val: '568',   trend: 'â†˜ 25%', trendColor: 'text-emerald-500' },
-                  { icon: CheckCircle2,color: 'bg-emerald-50 text-emerald-500', label: 'Remediated',       val: '890',   trend: 'â†— 18%', trendColor: 'text-emerald-500' },
+                  { icon: CheckCircle2,color: 'bg-emerald-50 text-emerald-500', label: 'Remediated',       val: '890',   trend: 'â†&mdash; 18%', trendColor: 'text-emerald-500' },
                   { icon: Clock,       color: 'bg-purple-50 text-purple-500', label: 'Pending',            val: '646',   trend: 'â†˜ 40%', trendColor: 'text-emerald-500' },
                 ].map(({ icon: Icon, color, label, val, trend, trendColor }) => (
                   <div key={label} className="bg-white/40 backdrop-blur-md border border-white/60 rounded-xl p-5 shadow-sm">
@@ -280,7 +280,7 @@ export default function Dashboard() {
                         const angle = (k * 60 - 90) * Math.PI / 180
                         return <line key={k} x1="70" y1="65" x2={70 + 55 * Math.cos(angle)} y2={65 + 55 * Math.sin(angle)} stroke="#e2e8f0" strokeWidth="1"/>
                       })}
-                      {/* Data polygon: 88,64,72,81,58,76 â†’ as fractions of 100 */}
+                      {/* Data polygon: 88,64,72,81,58,76 â†&apos; as fractions of 100 */}
                       <polygon
                         points={[88,64,72,81,58,76].map((v, k) => {
                           const angle = (k * 60 - 90) * Math.PI / 180
@@ -374,7 +374,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* â”€â”€ Network Topology â”€â”€ */}
+          {/* â&quot;€â&quot;€ Network Topology â&quot;€â&quot;€ */}
           {activeTab === 'topology' && (
             <div className="w-full min-h-[600px] bg-slate-900 rounded-[20px] p-6 relative overflow-hidden border border-slate-800 shadow-inner">
               <h2 className="text-xl font-bold text-white mb-1">Live Network Topology</h2>

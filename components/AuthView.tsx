@@ -76,7 +76,7 @@ export default function AuthView() {
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
               <div className="relative">
-                <input required value={password} onChange={e => setPassword(e.target.value)} type={showPass ? 'text' : 'password'} placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" className="w-full px-4 py-3 pr-10 bg-white border border-[#E5E5E5] rounded-[12px] text-sm focus:outline-none focus:border-slate-400" />
+                <input required value={password} onChange={e => setPassword(e.target.value)} type={showPass ? 'text' : 'password'} placeholder="........" className="w-full px-4 py-3 pr-10 bg-white border border-[#E5E5E5] rounded-[12px] text-sm focus:outline-none focus:border-slate-400" />
                 <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -95,7 +95,7 @@ export default function AuthView() {
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
               <div className="relative">
-                <input required value={password} onChange={e => setPassword(e.target.value)} type={showPass ? 'text' : 'password'} placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" className="w-full px-4 py-3 pr-10 bg-white border border-[#E5E5E5] rounded-[12px] text-sm focus:outline-none focus:border-slate-400" />
+                <input required value={password} onChange={e => setPassword(e.target.value)} type={showPass ? 'text' : 'password'} placeholder="........" className="w-full px-4 py-3 pr-10 bg-white border border-[#E5E5E5] rounded-[12px] text-sm focus:outline-none focus:border-slate-400" />
                 <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>

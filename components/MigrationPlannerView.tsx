@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { AlertCircle, AlertTriangle, CheckCircle2, Copy, CheckCheck, ChevronDown, ChevronUp } from 'lucide-react'
 import { useAppContext, cryptoDataMatrix } from './AppContext'
 
-// â”€â”€ Code line arrays (no template literals in JSX) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â&quot;€â&quot;€ Code line arrays (no template literals in JSX) â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€â&quot;€
 const RSA_VULN = [
   'from Crypto.PublicKey import RSA',
   'from Crypto.Cipher import PKCS1_OAEP',
@@ -14,7 +14,7 @@ const RSA_VULN = [
   '    return key.export_key()',
 ]
 const RSA_PATCH = [
-  '# ML-KEM-768 â€” NIST FIPS 203 approved',
+  '# ML-KEM-768 &mdash; NIST FIPS 203 approved',
   'from cryptography.hazmat.primitives.asymmetric',
   '    import mlkem',
   '',
@@ -33,7 +33,7 @@ const ECC_VULN = [
   '    return privkey.public_key()',
 ]
 const ECC_PATCH = [
-  '# ML-KEM-768 â€” NIST FIPS 203 Key Encapsulation',
+  '# ML-KEM-768 &mdash; NIST FIPS 203 Key Encapsulation',
   'from cryptography.hazmat.primitives.asymmetric',
   '    import mlkem',
   '',
@@ -52,7 +52,7 @@ const MD5_VULN = [
   '    return hashlib.md5(token.encode()).hexdigest()',
 ]
 const MD5_PATCH = [
-  '# ML-DSA-65 â€” NIST FIPS 204 Digital Signature',
+  '# ML-DSA-65 &mdash; NIST FIPS 204 Digital Signature',
   'from cryptography.hazmat.primitives.asymmetric',
   '    import mldsa',
   '',
@@ -69,7 +69,7 @@ const BLOW_VULN = [
   '    return cipher.encrypt(data)',
 ]
 const BLOW_PATCH = [
-  '# AES-256-GCM â€” Authenticated Encryption (NIST SP 800-38D)',
+  '# AES-256-GCM &mdash; Authenticated Encryption (NIST SP 800-38D)',
   'from cryptography.hazmat.primitives.ciphers.aead',
   '    import AESGCM',
   '',
@@ -98,7 +98,7 @@ function CodeCard({ side, lines }: { side: 'vuln' | 'patch', lines: string[] }) 
   return (
     <div className={'flex-1 rounded-xl overflow-hidden border min-w-0 ' + (isVuln ? 'border-rose-800' : 'border-emerald-800')}>
       <div className={'flex items-center justify-between px-4 py-2 text-[11px] font-semibold ' + (isVuln ? 'bg-rose-950 text-rose-300' : 'bg-emerald-950 text-emerald-300')}>
-        <span>{isVuln ? 'â— Vulnerable Code' : 'âœ“ Patched Code'}</span>
+        <span>{isVuln ? 'â&mdash; Vulnerable Code' : 'âœ&quot; Patched Code'}</span>
         <CopyButton lines={lines} />
       </div>
       <div className="bg-[#0d1117] p-4 overflow-x-auto">
@@ -137,7 +137,7 @@ function PendingCard({ title, file, line, desc, vulnLines, patchLines, replaceme
       </div>
       <div className="px-6 pb-3 flex items-center gap-3 text-xs text-slate-500 flex-wrap">
         <span className="font-mono text-blue-600">{file}</span>
-        <span>â€¢</span>
+        <span>&bull;</span>
         <span>Line {line}</span>
         <span className="inline-block px-2.5 py-0.5 rounded-md text-xs font-semibold bg-rose-100 text-rose-700 ml-1">OWASP A02:2021</span>
       </div>
@@ -163,7 +163,7 @@ function CompletedCard({ title, file, line, desc, vulnLines, patchLines }: { tit
           <div className="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center"><CheckCircle2 className="w-5 h-5 text-emerald-600" /></div>
           <div>
             <h3 className="text-lg font-bold text-slate-900">{title}</h3>
-            <p className="text-[11px] text-emerald-600 font-semibold mt-0.5">âœ“ Remediated â€” AES-256-GCM deployed to 89 instances</p>
+            <p className="text-[11px] text-emerald-600 font-semibold mt-0.5">âœ&quot; Remediated &mdash; AES-256-GCM deployed to 89 instances</p>
           </div>
         </div>
         <button onClick={() => setExpanded(!expanded)} className="text-slate-400 hover:text-slate-600">
@@ -172,7 +172,7 @@ function CompletedCard({ title, file, line, desc, vulnLines, patchLines }: { tit
       </div>
       <div className="px-6 pb-3 flex items-center gap-3 text-xs text-slate-500 flex-wrap">
         <span className="font-mono text-blue-600">{file}</span>
-        <span>â€¢</span><span>Line {line}</span>
+        <span>&bull;</span><span>Line {line}</span>
         <span className="inline-block px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-700 ml-1">REMEDIATED</span>
       </div>
       <div className="px-6 pb-4"><p className="text-xs text-slate-500">{desc}</p></div>
@@ -204,7 +204,7 @@ export default function MigrationPlannerView() {
         <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-xl px-5 py-4 shadow-sm text-right shrink-0 min-w-[200px]">
           <p className="text-xs text-slate-400 mb-1 font-medium">Progress</p>
           <p className="text-2xl font-bold text-slate-900">{done} <span className="text-sm font-normal text-slate-400">/ {total} remediated</span></p>
-          <p className="text-[11px] text-slate-400 mt-0.5">{pct}% complete â€” {cryptoDataMatrix.pending} still pending</p>
+          <p className="text-[11px] text-slate-400 mt-0.5">{pct}% complete &mdash; {cryptoDataMatrix.pending} still pending</p>
           <div className="mt-2 h-1.5 bg-slate-100 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full" style={{ width: pct + '%' }} />
           </div>
@@ -217,11 +217,11 @@ export default function MigrationPlannerView() {
         desc="RSA-1024/2048 is broken by Shor's algorithm on a Cryptographically-Relevant Quantum Computer (CRQC). Replace with ML-KEM-768 per NIST FIPS 203."
         replacement="ML-KEM-768 (FIPS 203)" vulnLines={RSA_VULN} patchLines={RSA_PATCH} />
 
-      <PendingCard title="ECC (secp256r1) â€” TLS Key Exchange" file="network/tls_handshake.c" line="88"
+      <PendingCard title="ECC (secp256r1) &mdash; TLS Key Exchange" file="network/tls_handshake.c" line="88"
         desc="Elliptic Curve Diffie-Hellman over secp256r1 is vulnerable to Shor's algorithm. Replace with ML-KEM-768 Key Encapsulation Mechanism per NIST FIPS 203."
         replacement="ML-KEM-768 (FIPS 203)" vulnLines={ECC_VULN} patchLines={ECC_PATCH} />
 
-      <PendingCard title="MD5 / SHA-1 â€” Auth Hashing" file="auth/hash_auth.go" line="31"
+      <PendingCard title="MD5 / SHA-1 &mdash; Auth Hashing" file="auth/hash_auth.go" line="31"
         desc="MD5 is susceptible to collision attacks (Xiaoyun Wang, 2004). SHA-1 was shattered (Google, 2017). Replace with ML-DSA-65 for post-quantum signature integrity per NIST FIPS 204."
         replacement="ML-DSA-65 (FIPS 204)" vulnLines={MD5_VULN} patchLines={MD5_PATCH} />
 

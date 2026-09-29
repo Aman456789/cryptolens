@@ -3,23 +3,23 @@ import React, { useState } from 'react'
 import { Search, Filter, CheckCircle2, AlertTriangle } from 'lucide-react'
 import { useAppContext, cryptoDataMatrix } from './AppContext'
 
-// Full CBOM asset list â€” first 4 rows are the provable matrix entries, rest are supporting assets
+// Full CBOM asset list &mdash; first 4 rows are the provable matrix entries, rest are supporting assets
 const ASSETS = [
   { id: 'VULN-001', name: 'RSA Key Generation',       algo: 'RSA-1024/2048',       loc: 'crypto/keys/rsa_utils.py:L42',    pq: 'Vulnerable', risk: 'Critical', replacement: 'ML-KEM-768 (FIPS 203)' },
   { id: 'VULN-002', name: 'TLS Handshake Cipher',     algo: 'ECC (secp256r1)',      loc: 'network/tls_handshake.c:L88',     pq: 'Vulnerable', risk: 'High',     replacement: 'ML-KEM-768 (FIPS 203)' },
   { id: 'VULN-003', name: 'Legacy Block Cipher',      algo: 'Blowfish / SWEET32',  loc: 'legacy/cipher_utils.js:L14',      pq: 'Vulnerable', risk: 'High',     replacement: 'AES-256-GCM'           },
   { id: 'VULN-004', name: 'Auth Hash Function',       algo: 'MD5 / SHA-1',         loc: 'auth/hash_auth.go:L31',           pq: 'Vulnerable', risk: 'Medium',   replacement: 'ML-DSA-65 (FIPS 204)'  },
-  { id: 'SAFE-001', name: 'Database Connection',      algo: 'AES-256-GCM',         loc: 'db/connector.ts:L18',             pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-002', name: 'Password Hashing',         algo: 'bcrypt (SHA-512)',     loc: 'user_service.ts:L91',             pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-003', name: 'S3 Bucket Encryption',     algo: 'AES-256-CBC',         loc: 'storage/s3.ts:L23',               pq: 'Safe',       risk: 'Medium',   replacement: 'â€”'                     },
-  { id: 'SAFE-004', name: 'HMAC API Signature',       algo: 'HMAC-SHA256',         loc: 'gateway/middleware.ts:L66',       pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-005', name: 'Session Cookie Secret',    algo: 'AES-256-GCM',         loc: 'session/store.ts:L12',            pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-006', name: 'VPN Tunnel Encryption',    algo: 'AES-256-GCM',         loc: 'vpn/config.yaml:L30',             pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-007', name: 'OTP Secret (TOTP)',        algo: 'HMAC-SHA256',         loc: 'mfa/totp.ts:L17',                 pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-008', name: 'Certificate Signing',      algo: 'SHA-256 (ECDSA P-384)',loc: 'pki/cert.ts:L4',                 pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-009', name: 'Data-at-Rest Key',         algo: 'AES-256-GCM',         loc: 'db/encryption.ts:L55',            pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-010', name: 'OAuth2 Client Secret',     algo: 'PBKDF2-SHA256',       loc: 'oauth/client.ts:L34',             pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
-  { id: 'SAFE-011', name: 'SSH Host Key (Ed25519)',   algo: 'Ed25519 (PQ-aware)',  loc: 'ssh/hostkeys.conf:L1',            pq: 'Safe',       risk: 'Low',      replacement: 'â€”'                     },
+  { id: 'SAFE-001', name: 'Database Connection',      algo: 'AES-256-GCM',         loc: 'db/connector.ts:L18',             pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-002', name: 'Password Hashing',         algo: 'bcrypt (SHA-512)',     loc: 'user_service.ts:L91',             pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-003', name: 'S3 Bucket Encryption',     algo: 'AES-256-CBC',         loc: 'storage/s3.ts:L23',               pq: 'Safe',       risk: 'Medium',   replacement: '&mdash;'                     },
+  { id: 'SAFE-004', name: 'HMAC API Signature',       algo: 'HMAC-SHA256',         loc: 'gateway/middleware.ts:L66',       pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-005', name: 'Session Cookie Secret',    algo: 'AES-256-GCM',         loc: 'session/store.ts:L12',            pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-006', name: 'VPN Tunnel Encryption',    algo: 'AES-256-GCM',         loc: 'vpn/config.yaml:L30',             pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-007', name: 'OTP Secret (TOTP)',        algo: 'HMAC-SHA256',         loc: 'mfa/totp.ts:L17',                 pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-008', name: 'Certificate Signing',      algo: 'SHA-256 (ECDSA P-384)',loc: 'pki/cert.ts:L4',                 pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-009', name: 'Data-at-Rest Key',         algo: 'AES-256-GCM',         loc: 'db/encryption.ts:L55',            pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-010', name: 'OAuth2 Client Secret',     algo: 'PBKDF2-SHA256',       loc: 'oauth/client.ts:L34',             pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
+  { id: 'SAFE-011', name: 'SSH Host Key (Ed25519)',   algo: 'Ed25519 (PQ-aware)',  loc: 'ssh/hostkeys.conf:L1',            pq: 'Safe',       risk: 'Low',      replacement: '&mdash;'                     },
 ]
 
 export default function CbomInventoryView() {
@@ -52,7 +52,7 @@ export default function CbomInventoryView() {
       <div>
         <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{projectName}</p>
         <h2 className="text-2xl font-bold text-slate-900 mt-1">CBOM Inventory</h2>
-        <p className="text-sm text-slate-500 mt-1">CycloneDX 1.6 Cryptographic Bill of Materials â€” {cryptoDataMatrix.totalAssets.toLocaleString()} total assets ({vuln} vulnerabilities: {pend} pending, {rem} remediated).</p>
+        <p className="text-sm text-slate-500 mt-1">CycloneDX 1.6 Cryptographic Bill of Materials &mdash; {cryptoDataMatrix.totalAssets.toLocaleString()} total assets ({vuln} vulnerabilities: {pend} pending, {rem} remediated).</p>
       </div>
 
       {/* Summary strip from matrix */}

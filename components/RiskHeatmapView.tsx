@@ -30,7 +30,7 @@ function riskLabel(impact: number, likelihood: number) {
   return 'Low'
 }
 
-const AXES = ['1 â€“ Low', '2 â€“ Minor', '3 â€“ Moderate', '4 â€“ Severe']
+const AXES = ['1 &quot;&quot; Low', '2 &quot;&quot; Minor', '3 &quot;&quot; Moderate', '4 &quot;&quot; Severe']
 
 export default function RiskHeatmapView() {
   const { projectName } = useAppContext()
@@ -46,10 +46,10 @@ export default function RiskHeatmapView() {
         <div className="flex gap-2 items-end">
           {/* Y-Axis Label */}
           <div className="flex flex-col justify-between h-64 pr-2 items-end shrink-0">
-            <span className="text-[10px] text-slate-500 rotate-0 leading-3">4 â€“ Severe</span>
-            <span className="text-[10px] text-slate-500">3 â€“ Moderate</span>
-            <span className="text-[10px] text-slate-500">2 â€“ Minor</span>
-            <span className="text-[10px] text-slate-500">1 â€“ Low</span>
+            <span className="text-[10px] text-slate-500 rotate-0 leading-3">4 &quot;&quot; Severe</span>
+            <span className="text-[10px] text-slate-500">3 &quot;&quot; Moderate</span>
+            <span className="text-[10px] text-slate-500">2 &quot;&quot; Minor</span>
+            <span className="text-[10px] text-slate-500">1 &quot;&quot; Low</span>
           </div>
 
           {/* Grid */}
@@ -78,7 +78,7 @@ export default function RiskHeatmapView() {
             <div className="grid grid-cols-4 gap-1 mt-1">
               {AXES.map(l => <div key={l} className="text-[10px] text-slate-500 text-center">{l}</div>)}
             </div>
-            <div className="text-center text-xs text-slate-400 mt-1 font-medium">Likelihood â†’</div>
+            <div className="text-center text-xs text-slate-400 mt-1 font-medium">Likelihood â†&apos;</div>
           </div>
 
           {/* Y Label */}
